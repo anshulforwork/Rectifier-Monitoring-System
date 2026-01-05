@@ -1,24 +1,72 @@
-rectifier:
-  ip: "192.168.1.200"
-  port: 502
-  unit_id: 1
+# ==============================
+# Application Identity
+# ==============================
+app:
+  name: "Rectifier Monitoring System"
+  version: "1.0.0"
+  mode: "development"     # development | production
 
+# ==============================
+# Rectifier / Modbus Settings
+# ==============================
+rectifier:
+  ip: "127.0.0.1"
+  port: 1502
+  unit_id: 1
+  timeout_sec: 2
+
+# ==============================
+# Polling & Reconnect
+# ==============================
 polling:
   interval_sec: 1
-  reconnect_delay_sec: 5
+  max_failures: 3          # after this → ERROR state
+  # reconnect_delay_sec: 5 # (future use)
 
+# ==============================
+# Scaling (Raw register → real value)
+# ==============================
 scaling:
   voltage_multiplier: 100
   current_multiplier: 10
 
+# ==============================
+# Logging (INDUSTRIAL RULES)
+# ==============================
 logging:
-  csv_path: "logs/data/"
-  app_log: "logs/app.log"
+  root_dir: "logs"         # single root (EXE friendly)
 
+  csv:
+    enabled: true
+    subdir: "data"
+    rotate: "daily"        # currently only daily supported
+
+  app_log:
+    filename: "app.log"
+    level: "INFO"          # DEBUG | INFO | WARNING | ERROR
+    max_size_mb: 5
+    backup_count: 5
+
+  command_log:
+    max_lines: 200         # UI trimming (future)
+
+# ==============================
+# Database (Optional / Future)
+# ==============================
 database:
+  enabled: false
   type: "sqlite"
   connection: "sqlite:///rectifier.db"
 
+# ==============================
+# Web / UI
+# ==============================
 web:
   host: "0.0.0.0"
   port: 8080
+
+# ==============================
+# Paths (EXE override)
+# ==============================
+paths:
+  base_dir: "."            # auto-detected when frozen

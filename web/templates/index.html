@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rectifier Monitoring System</title>
+
+  <!-- Responsive -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/static/css/dashboard.css?v=1.0">
+</head>
+<body>
+
+<div class="app-container">
+
+  <header class="header">
+    <div class="title">RECTIFIER MONITORING SYSTEM</div>
+
+    <div class="header-actions">
+      <div class="status">
+        <span class="dot offline" id="connDot"></span>
+        <span id="connText">CONNECTING</span>
+      </div>
+
+      <button class="btn" onclick="showLogFiles()">Show CSV Logs</button>
+      <button class="btn" onclick="downloadLatestCSV()">Download CSV</button>
+    </div>
+  </header>
+
+  <section class="main-section">
+    <div class="product-panel">
+      <img src="/static/images/rectifier.png" alt="Rectifier">
+    </div>
+
+    <div class="data-panel">
+      <div class="meter">
+        <div class="label">VOLTAGE (V)</div>
+        <div class="display" id="voltage">0.00</div>
+      </div>
+
+      <div class="meter">
+        <div class="label">CURRENT (A)</div>
+        <div class="display" id="current">0.00</div>
+      </div>
+
+      <div class="mini-row">
+        <div class="mini-card">
+          <div class="mini-label">POWER</div>
+          <div class="mini-value" id="power">--</div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-label">POLARITY</div>
+          <div class="mini-value" id="polarity">--</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="command-section">
+    <div class="command-title">COMMAND LOG</div>
+    <pre id="commandLog"></pre>
+  </section>
+
+  <footer class="footer">
+    <img src="/static/images/aartech_logo.png" alt="AARTECH">
+    <span>Designed by AMS</span>
+  </footer>
+
+</div>
+
+<!-- Script -->
+<script src="/static/js/dashboard.js?v=1.0"></script>
+</body>
+</html>
